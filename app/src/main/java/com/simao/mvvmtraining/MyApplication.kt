@@ -1,7 +1,7 @@
 package com.simao.mvvmtraining
 
 import android.app.Application
-import com.simao.mvvmtraining.di.module
+import com.simao.mvvmtraining.di.modules
 import org.koin.android.ext.koin.androidContext
 
 import org.koin.core.context.startKoin
@@ -15,7 +15,7 @@ class MyApplication : Application() {
 
             androidContext(this@MyApplication)
 
-            modules(module)
+            modules(modules)
         }
 
     }

@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import com.simao.mvvmtraining.R
 import com.simao.mvvmtraining.model.BookEntity
 import kotlinx.android.synthetic.main.activity_main.*
@@ -12,7 +11,7 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
-    val bookViewModel : BookViewModel by viewModel()
+    private val bookViewModel : BookViewModel by viewModel()
 
     private val TAG = "TAG"
 

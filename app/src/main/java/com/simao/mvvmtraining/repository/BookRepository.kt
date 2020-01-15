@@ -3,10 +3,13 @@ package com.simao.mvvmtraining.repository
 import androidx.lifecycle.LiveData
 import com.simao.mvvmtraining.model.BookEntity
 
-class BookRepository(private val bookDAO: BookDAO) {
-    val allBooks: LiveData<List<BookEntity>> = bookDAO.getAll()
+class BookRepository(private val bookDAO: BookDAO) : BookRepositoryInterface {
 
-    suspend fun insert (book: BookEntity) {
+    override suspend fun insert (book: BookEntity) {
         bookDAO.insert(book)
+    }
+
+    override fun allBooks(): LiveData<List<BookEntity>> {
+        return bookDAO.getAll()
     }
 }

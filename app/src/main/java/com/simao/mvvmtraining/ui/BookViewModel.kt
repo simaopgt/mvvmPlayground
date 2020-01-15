@@ -1,26 +1,18 @@
 package com.simao.mvvmtraining.ui
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.simao.mvvmtraining.model.BookEntity
-import com.simao.mvvmtraining.repository.BookDatabase
-import com.simao.mvvmtraining.repository.BookRepository
+import com.simao.mvvmtraining.repository.BookRepositoryInterface
 import kotlinx.coroutines.launch
 
-class BookViewModel(context: Context) : ViewModel() {
-    private val repository : BookRepository
-    val allBooks: LiveData<List<BookEntity>>
+class BookViewModel(private val bookRepository : BookRepositoryInterface) : ViewModel() {
 
-    init {
-        val bookDAO = BookDatabase.getInstance(context).bookDao()
-        repository = BookRepository(bookDAO)
-        allBooks = repository.allBooks
-    }
+    val allBooks: LiveData<List<BookEntity>> = bookRepository.allBooks()
 
     fun insert(book: BookEntity) = viewModelScope.launch {
-        repository.insert(book)
+        bookRepository.insert(book)
     }
 
 }
