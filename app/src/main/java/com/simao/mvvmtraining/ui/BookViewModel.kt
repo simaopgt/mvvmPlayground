@@ -9,7 +9,9 @@ import kotlinx.coroutines.launch
 
 class BookViewModel(private val bookRepository : BookRepositoryInterface) : ViewModel() {
 
-    val allBooks: LiveData<List<BookEntity>> = bookRepository.allBooks()
+    val allBooks : LiveData<List<BookEntity>> by lazy {
+        bookRepository.allBooks()
+    }
 
     fun insert(book: BookEntity) = viewModelScope.launch {
         bookRepository.insert(book)
